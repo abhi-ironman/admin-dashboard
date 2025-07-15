@@ -1,0 +1,439 @@
+@font-face {
+    font-family: 'myfont';
+    src: url(fonts/Evafiya.ttf);
+}
+@font-face {
+    font-family: 'yourfont';
+    src: url(fonts/HomemadeApple-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'yourmomfont';
+    src: url(fonts/sugarmagicpersonaluseonly-jemyo.otf);
+}
+@font-face {
+    font-family: 'yourdadfont';
+    src: url(fonts/fonnts.com-Address_Sans_Pro_Cd_Bold.otf);
+}
+@font-face {
+    font-family: 'yoursisfont';
+    src: url(fonts/ARCADECLASSIC.TTF);
+}
+
+@font-face {
+    font-family: 'eren';
+    src: url(fonts/EireneSans-Regular.otf);
+}
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+
+
+.main-grid{
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 1.5fr 6fr;
+}
+.main-grid > *{
+    border: 1px solid black;
+}
+
+
+
+
+
+.body-grid{
+    display: grid;
+    grid-template-columns: 6fr 2fr;
+}
+
+.project-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+.project-container .project-header{
+    align-self: center;
+    grid-column: 1/3;
+    height: auto;
+    font-family: 'myfont';
+    letter-spacing: 1px;
+    font-size: 28px;
+}
+
+.card{
+    margin: 7.5px;
+    padding: 20px 10px;
+    border: 1px solid black;
+    overflow: wrap;
+    background-image: url(images/2206_w019_n002_621b_p15_621.jpg);
+    background-size: contain; 
+    transition: all ease-in 0.5s;
+ 
+    
+}
+.title{
+    font-family: 'myfont';
+    font-size: 30px;
+}
+
+.text{
+    font-family: 'yourfont';
+    font-size: 12px;
+}
+
+.cards-option{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.right-column{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+
+.circle-button {
+  width: 22px;                 /* Equal width and height = circle */
+  height: 22px;
+  border-radius: 50%;          /* Makes it a circle */
+  border: 1px solid black;
+  background: transparent;
+  /* Light background (customize) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+
+
+
+.circle-button .star-icon {
+  width: 95%;   /* Adjust based on design */
+  height: auto;
+  display: block;
+  margin-left: 1.5px;
+
+}
+
+
+.circle-button:hover{
+    scale: 1.03;
+    box-shadow: -1px 1px black;
+}
+
+
+.btn{
+    margin-left: 4px;
+}
+.btn img{
+    height: 80%;
+}
+
+.card:hover{
+    scale: 10px -10px;
+    box-shadow: -3px 5px 1px black ;
+}
+
+.project-header{
+    background-color: black;
+    color: whitesmoke;
+}
+
+.Announcement-container{
+    display: flex;
+    flex-direction: column;
+    font-family: 'myfont';
+    padding: 10px 20px;
+}
+
+.ann-header{
+    font-family: 'yourmomfont';
+    font-size: 32px;
+
+}
+
+.ann-box{
+    border: 1px solid black;
+    margin:10px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    padding: 10px 7px;
+}
+.ann-title{
+    margin-top: 10px;
+    margin-left: 2px;
+    margin-bottom: 3px;
+    font-size: 15x;
+}
+
+.ann-text{
+    font-size: 12px;
+    margin-left: 9px;
+    margin-bottom: 5px;
+
+}
+
+hr{
+    margin: 2px auto ;
+    color: whitesmoke;
+}
+
+
+.Trending-container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+
+.Trending-header{
+    font-family: 'yourmomfont';
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.Trending-card{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+
+
+.profile-icon{
+    grid-row: 1/3;
+}
+.Trending-box{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.pf{
+    background: transparent;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.pf img{
+    width: 50%;
+    height: 85%;
+    background-position: center;
+    display: block;
+}
+
+.uname{
+    font-family: 'yoursisfont';
+    font-size: 20px;
+    background-color: blue;
+    color: #FFFF00;
+    display: flex;
+    align-items: flex-end;
+}
+
+.Trending-text{
+    font-family: 'yourdadfont';
+    font-style: italic;
+    background-color: #da2528;
+    color: whitesmoke;
+    display: flex;
+    padding-left: 20px;
+    align-items: flex-end;
+}
+
+.header-container{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+}
+
+
+.left{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+}
+
+.left .first{
+    grid-row: 1/3;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.left .first img{
+  width: 105px;
+  height: 145px
+}
+
+
+.small-text{
+    font-family: 'yoursisfont';
+    margin-top: 35px;
+    background-color: blue;
+    color: #FFFF00;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+}
+
+.big-text{
+    font-family: 'yourdadfont';
+    font-style: italic;
+    margin-bottom: 35px;
+    background-color: #da2528;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    padding-left: 15px;
+}
+
+.right{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+
+
+.btn-panel{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.btn-panel div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-panel div button{
+    font-family: 'yoursisfont';
+    color: whitesmoke;
+    background-color: black;
+    font-size: 20px;
+    padding: 10px 20px; 
+    transition: all ease-in-out 0.3s;
+
+}
+
+.btn-panel div button:hover{
+    color: black;
+    background-color: whitesmoke;
+
+}
+
+.user-top{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.user-top > *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-top button{
+    display: block;
+    background:transparent;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: all ease-in-out 0.3s;
+}
+.user-top button img{
+    width: 80%;
+    height: 80%;
+}
+
+.user-top div button:hover{
+    scale:1.03;
+    box-shadow: -1px 1px black;
+}
+
+.user-top p{
+    font-family: 'yoursisfont';
+    font-size: 19px;
+    word-spacing: 2px;
+    color: black;
+}
+
+
+.dashboard-grid{
+    font-family: 'myfont' ;
+    grid-row: 1/3;
+    display: flex;
+    flex-direction: column;
+}
+.dashboard-grid > *{
+    border: 1px solid black;
+}
+
+.dashboard-grid .top{
+    background-color: black;
+    color: white;
+    margin-top: 20px;
+    font-size: 50px;
+}
+
+.dashboard-grid .center{
+    margin-top:100px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    gap: 10px;
+    padding: 10px 5px;
+}
+
+.dashboard-grid .bottom{
+    padding: 10px 5px;
+    margin-top:100px;
+    display: flex;
+    margin-bottom: 200px;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    gap: 10px;
+}
+
+.dashboard-grid .git{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    gap: 5px;
+    align-items: center;
+}
+.dashboard-grid p{
+    transition: all ease-in 0.3s;
+}
+.dashboard-grid p:hover{
+    background-color: black;
+    color: white;
+    scale: 1.02;
+    
+
+}
+
+.bs{
+    justify-content: flex-end;
+}
+
+.sb{
+    justify-content: flex-start;
+}
+
