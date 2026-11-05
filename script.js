@@ -1,8 +1,4 @@
-// Lab 7: frontend navigation and BERT API request
-
-// Set this after deploying the Python backend.
-// Example: "https://your-app-name.onrender.com/answer"
-const API_URL = "YOUR_BACKEND_URL/answer";
+// Lab 7: browser-based BERT question answering (no Python server needed)
 
 const bodyPage = document.querySelector(".body-grid");
 const qaPage = document.getElementById("qaPage");
@@ -16,20 +12,18 @@ const qaStatus = document.getElementById("qaStatus");
 const answerOutput = document.getElementById("answerOutput");
 const confidenceOutput = document.getElementById("confidenceOutput");
 
-// Switch between the original dashboard and the QA page.
+// Load the model only once; the browser can cache it for later visits.
+let answerer = null;
+
 navLinks.forEach((link) => {
     link.addEventListener("click", () => {
-        const page = link.dataset.page;
-        const showQA = page === "qa";
-
+        const showQA = link.dataset.page === "qa";
         bodyPage.classList.toggle("qa-mode", showQA);
         qaPage.hidden = !showQA;
-
         navLinks.forEach((item) => item.classList.toggle("active", item === link));
     });
 });
 
-// Send context and question to the FastAPI backend.
 askButton.addEventListener("click", async () => {
     const context = contextInput.value.trim();
     const question = questionInput.value.trim();
@@ -39,41 +33,40 @@ askButton.addEventListener("click", async () => {
         return;
     }
 
-    if (API_URL.startsWith("YOUR_BACKEND_URL")) {
-        qaStatus.textContent = "The interface is ready. Deploy the Python backend and set API_URL in script.js to activate BERT.";
-        return;
-    }
-
     askButton.disabled = true;
-    qaStatus.textContent = "BERT is reading the passage...";
-    answerOutput.textContent = "Processing...";
+    answerOutput.textContent = "Loading model...";
     confidenceOutput.textContent = "";
 
     try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ context, question })
-        });
-
-        const data = await response.json();
-        if (!response.ok) {
-            throw new Error(data.detail || "The server could not process the question.");
+        if (!answerer) {
+            qaStatus.textContent = "Downloading the question-answering model. The first load may take a few minutes...";
+            const { pipeline } = await import(
+                "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2"
+            );
+            answerer = await pipeline(
+                "question-answering",
+                "Xenova/distilbert-base-cased-distilled-squad",
+                { dtype: "q8" }
+            );
         }
 
-        answerOutput.textContent = data.answer || "No answer found in the supplied context.";
-        confidenceOutput.textContent = data.score == null
+        qaStatus.textContent = "The model is reading your passage...";
+        const result = await answerer(question, context);
+
+        answerOutput.textContent = result.answer || "No clear answer found in the supplied passage.";
+        confidenceOutput.textContent = result.score == null
             ? ""
-            : "Model score: " + Number(data.score).toFixed(4);
-        qaStatus.textContent = "Answer received.";
+            : "Model confidence score: " + Number(result.score).toFixed(4);
+        qaStatus.textContent = "Answer generated successfully in your browser.";
     } catch (error) {
-        qaStatus.textContent = "Request failed: " + error.message;
+        console.error(error);
+        qaStatus.textContent = "Could not load or run the model: " + error.message;
+        answerOutput.textContent = "Please check your internet connection and try again.";
     } finally {
         askButton.disabled = false;
     }
 });
 
-// Reset the inputs and result.
 clearButton.addEventListener("click", () => {
     contextInput.value = "";
     questionInput.value = "";
