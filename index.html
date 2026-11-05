@@ -11,12 +11,13 @@
         <div class="dashboard-grid">
             <div class="top">Dashboard</div>
             <div class="center">
-                <p>Home</p>
+                <button class="nav-link" data-page="home">Home</button>
                 <p>Profile</p>
                 <p>Message</p>
                 <p>History</p>
                 <p>Tasks</p>
                 <p>Communities</p>
+                <button class="nav-link" data-page="qa">AI Question Answering</button>
             </div>
             <div class="bottom">
                 <p>Setting</p>
@@ -178,7 +179,34 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Lab 7: BERT Question Answering page -->
+            <section class="qa-page" id="qaPage" hidden>
+                <div class="qa-heading">
+                    <p class="qa-kicker">NLP LAB 07</p>
+                    <h1>AI Question Answering</h1>
+                    <p>Ask a question and let BERT find the answer in your passage.</p>
+                </div>
+                <div class="qa-panel">
+                    <label for="contextInput">Context / passage</label>
+                    <textarea id="contextInput" rows="8" placeholder="Paste a paragraph or passage here..."></textarea>
+                    <label for="questionInput">Your question</label>
+                    <input id="questionInput" type="text" placeholder="e.g. What is the main idea?">
+                    <div class="qa-actions">
+                        <button id="askButton" type="button">Ask BERT</button>
+                        <button id="clearButton" class="qa-clear" type="button">Clear</button>
+                    </div>
+                    <p id="qaStatus" class="qa-status" role="status" aria-live="polite">Enter a passage and a question to begin.</p>
+                    <div class="qa-result" id="qaResult" aria-live="polite">
+                        <p class="qa-result-label">ANSWER</p>
+                        <p id="answerOutput">Your answer will appear here.</p>
+                        <p id="confidenceOutput" class="qa-confidence"></p>
+                    </div>
+                </div>
+                <p class="qa-note">Model: BERT fine-tuned on SQuAD 2.0. It extracts answers from the supplied context; it does not generate free-form responses.</p>
+            </section>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
